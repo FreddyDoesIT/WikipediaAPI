@@ -1,7 +1,6 @@
 import React, { Component } from "react";
 import { Input, Form } from "semantic-ui-react";
 import { Meteor } from "meteor/meteor";
-// import PropTypes from "prop-types";
 
 export default class Search extends Component {
 	constructor(props) {
@@ -12,6 +11,7 @@ export default class Search extends Component {
 			title: "",
 			links: "",
 			display: "",
+			buttonValue: "",
 			err: ""
 		};
 	}
@@ -29,13 +29,32 @@ export default class Search extends Component {
 					console.log(this.state.err);
 					return;
 				}
-
-				console.log("got data", data);
-
 				this.setState({
 					title: data.title,
-					links: data.links,
-					display: data.text
+					links: data.links.slice(0, 100),
+					display: data.text["*"]
+				});
+			}
+		);
+	}
+
+	handleClick(value) {
+		event.preventDefault();
+
+		Meteor.call(
+			"getDataFromAPI",
+			value,
+			(err, data) => {
+				if (err) {
+					this.setState({ err });
+					console.log(this.state.buttonValue);
+					console.log(this.state.err);
+					return;
+				}
+				this.setState({
+					title: data.title,
+					links: data.links.slice(0, 100),
+					display: data.text["*"]
 				});
 			}
 		);
@@ -71,15 +90,25 @@ export default class Search extends Component {
 
 	links() {
 		return this.state.links
-			? this.state.links.map(data => (
-					<button className="linkName">{data["*"]}</button>
+			? this.state.links.map((data, index) => (
+					<button
+						key={index}
+						onClick={e =>
+							this.handleClick(e.target.value)}
+						// onChange={e =>
+						// 	this.setState({ buttonValue: e.target.value })
+						// }
+						value={data["*"]}
+					>
+						{data["*"]}
+					</button>
 			  ))
 			: "";
 	}
 
 	content() {
 		return (
-			<span dangerouslySetInnerHTML={{ __html: this.state.display["*"] }} />
+			<span dangerouslySetInnerHTML={{ __html: this.state.display }} />
 		);
 	}
 
