@@ -17,7 +17,9 @@ if (Meteor.isServer) {
 				throw new Meteor.Error("not-authorized");
 			}
 
-
+			searchedHistory.insert({
+				searchingHistory: searchingContent
+			});
 		}
 	});
 }

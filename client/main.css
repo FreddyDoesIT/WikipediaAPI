@@ -2,3 +2,8 @@ body {
   padding: 10px;
   font-family: sans-serif;
 }
+
+.linkName, .title {
+	/*border: 1px black solid;
+	margin-bottom: 1px;*/
+}
