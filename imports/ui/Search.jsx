@@ -41,23 +41,19 @@ export default class Search extends Component {
 	handleClick(value) {
 		event.preventDefault();
 
-		Meteor.call(
-			"getDataFromAPI",
-			value,
-			(err, data) => {
-				if (err) {
-					this.setState({ err });
-					console.log(this.state.buttonValue);
-					console.log(this.state.err);
-					return;
-				}
-				this.setState({
-					title: data.title,
-					links: data.links.slice(0, 100),
-					display: data.text["*"]
-				});
+		Meteor.call("getDataFromAPI", value, (err, data) => {
+			if (err) {
+				this.setState({ err });
+				console.log(this.state.buttonValue);
+				console.log(this.state.err);
+				return;
 			}
-		);
+			this.setState({
+				title: data.title,
+				links: data.links.slice(0, 100),
+				display: data.text["*"]
+			});
+		});
 	}
 
 	searchBar() {
@@ -67,7 +63,7 @@ export default class Search extends Component {
 					<Input
 						id="searchBar"
 						type="text"
-						value={this.state.word}
+						value={this.state.searchingContent}
 						onChange={e =>
 							this.setState({ searchingContent: e.target.value })
 						}
@@ -82,7 +78,7 @@ export default class Search extends Component {
 
 	history() {
 		return this.state.title ? (
-			<button className="title">{this.state.title}</button>
+			<button className="hvr-grow-shadow">{this.state.title}</button>
 		) : (
 			""
 		);
@@ -92,9 +88,9 @@ export default class Search extends Component {
 		return this.state.links
 			? this.state.links.map((data, index) => (
 					<button
+						className="hvr-grow-shadow"
 						key={index}
-						onClick={e =>
-							this.handleClick(e.target.value)}
+						onClick={e => this.handleClick(e.target.value)}
 						// onChange={e =>
 						// 	this.setState({ buttonValue: e.target.value })
 						// }
@@ -126,7 +122,3 @@ export default class Search extends Component {
 		);
 	}
 }
-
-// Search.propTypes = {
-// 	// param: PropTypes.string.isRequired
-// };
