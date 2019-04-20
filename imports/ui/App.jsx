@@ -6,7 +6,7 @@ export default class App extends Component {
 		return (
 			<Container>
 				<div>
-					<img src="/Wikipedia-logo-en-big.png" alt="wiki logo" height="45" width="42"/>
+					<img src="/Wikipedia-logo-en-big.png" alt="wiki logo" height="50" width="42"/>
 					<h1>Welcome to Wiki Search!</h1>
 				</div>
 				

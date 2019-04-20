@@ -1,8 +1,11 @@
 import React, { Component } from "react";
 import { Input, Form } from "semantic-ui-react";
 import { Meteor } from "meteor/meteor";
+import { withTracker } from "meteor/react-meteor-data";
+import { searchedHistory } from "../api/searchedHistory";
+import PropTypes from "prop-types";
 
-export default class Search extends Component {
+class Search extends Component {
 	constructor(props) {
 		super(props);
 		this.state = {
@@ -11,13 +14,16 @@ export default class Search extends Component {
 			title: "",
 			links: "",
 			display: "",
-			buttonValue: "",
+			history: [],
 			err: ""
 		};
 	}
 
 	onFormSubmit(event) {
 		event.preventDefault();
+
+		let historyUpdate = this.state.history.slice();
+		historyUpdate.push(this.state.searchingContent);
 
 		Meteor.call(
 			"getDataFromAPI",
@@ -32,7 +38,25 @@ export default class Search extends Component {
 				this.setState({
 					title: data.title,
 					links: data.links.slice(0, 100),
-					display: data.text["*"]
+					display: data.text["*"],
+					history: historyUpdate
+				});
+			}
+		);
+
+		Meteor.call(
+			"searchedHistory.insert",
+			this.state.searchingContent,
+			err => {
+				if (err) {
+					this.setState({ err });
+					console.log(this.state.searchingContent);
+					console.log(this.state.err);
+					return;
+				}
+
+				this.setState({
+					error: ""
 				});
 			}
 		);
@@ -40,6 +64,9 @@ export default class Search extends Component {
 
 	handleClick(value) {
 		event.preventDefault();
+
+		let historyUpdate = this.state.history.slice();
+		historyUpdate.push(value);
 
 		Meteor.call("getDataFromAPI", value, (err, data) => {
 			if (err) {
@@ -51,7 +78,21 @@ export default class Search extends Component {
 			this.setState({
 				title: data.title,
 				links: data.links.slice(0, 100),
-				display: data.text["*"]
+				display: data.text["*"],
+				history: historyUpdate
+			});
+		});
+
+		Meteor.call("searchedHistory.insert", value, err => {
+			if (err) {
+				this.setState({ err });
+				console.log(this.state.searchingContent);
+				console.log(this.state.err);
+				return;
+			}
+
+			this.setState({
+				error: ""
 			});
 		});
 	}
@@ -77,11 +118,19 @@ export default class Search extends Component {
 	}
 
 	history() {
-		return this.state.title ? (
-			<button className="hvr-grow-shadow">{this.state.title}</button>
-		) : (
-			""
-		);
+		return this.state.history.map((data, index) => (
+			<button
+				className="hvr-grow-shadow"
+				key={index}
+				onClick={e => this.handleClick(e.target.value)}
+				onChange={e =>
+					this.setState({ searchingContent: e.target.value })
+				}
+				value={data.searchedHistory}
+			>
+				{data}
+			</button>
+		));
 	}
 
 	links() {
@@ -91,9 +140,9 @@ export default class Search extends Component {
 						className="hvr-grow-shadow"
 						key={index}
 						onClick={e => this.handleClick(e.target.value)}
-						// onChange={e =>
-						// 	this.setState({ buttonValue: e.target.value })
-						// }
+						onChange={e =>
+							this.setState({ searchingContent: e.target.value })
+						}
 						value={data["*"]}
 					>
 						{data["*"]}
@@ -122,3 +171,16 @@ export default class Search extends Component {
 		);
 	}
 }
+
+Search.propTypes = {
+	searchingLogs: PropTypes.arrayOf(PropTypes.object).isRequired
+};
+
+export default withTracker(() => {
+	const handle = Meteor.subscribe("searchedHistory");
+
+	return {
+		searchingLogs: searchedHistory.find({}).fetch(),
+		ready: handle.ready()
+	};
+})(Search);
