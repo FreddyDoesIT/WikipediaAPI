@@ -129,7 +129,7 @@ class Search extends Component {
 				onChange={e =>
 					this.setState({ searchingContent: e.target.value })
 				}
-				value={data.searchedHistory}
+				value={data}
 			>
 				{data}
 			</Button>
