@@ -45,7 +45,7 @@ Open your browser and visit http://localhost:3000 and you should see the applica
 - Platform: [Meteor](https://www.meteor.com/) with React - An open source platform for 
 web, mobile, and desktop.
 - UI: [Semantic UI](https://semantic-ui.com/) - A development framework that helps create beautiful, responsive layouts using human-friendly HTML.
-- JavaScript library: typed.js, simpl-schema.js
+- JavaScript library: simpl-schema.js
 - API: [node-wikipedia](https://www.npmjs.com/package/node-wikipedia) - An API for fetching data from Wikipedia.
 
 
