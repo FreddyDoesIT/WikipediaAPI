@@ -13,7 +13,7 @@ You can click the content in the history or in the links section to search relev
 
 The main feature of this app is conducted within 4 hours for the final exam. User register function is implemented during the extension hour to make it more practical.
 
-I chose the option2: Use 24 hours and add users + db + deployment.
+<strong>I chose the option2: Use 24 hours and add users + db + deployment.</strong>
 
 CS5610 Course Link: http://johnguerra.co/classes/webDevelopment_spring_2019/ 
 
