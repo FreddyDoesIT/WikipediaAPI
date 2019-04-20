@@ -27,6 +27,7 @@ body {
 
 h1 {
   text-align: left !important;
+  font-family: Lato,'Helvetica Neue',Arial,Helvetica,sans-serif !important;
 }
 
 .contentFromWiki {

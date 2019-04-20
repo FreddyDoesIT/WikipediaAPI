@@ -157,7 +157,10 @@ class Search extends Component {
 
 	content() {
 		return (
-			<span className="contentFromWiki" dangerouslySetInnerHTML={{ __html: this.state.display }} />
+			<span
+				className="contentFromWiki"
+				dangerouslySetInnerHTML={{ __html: this.state.display }}
+			/>
 		);
 	}
 
@@ -166,15 +169,15 @@ class Search extends Component {
 			<div>
 				{this.searchBar()}
 				<br />
-				<br />
+
 				<h1>History</h1>
 				{this.history()}
 				<br />
-				<br />
+
 				<h1>Links</h1>
 				{this.links()}
 				<br />
-				<br />
+
 				<h1>Content</h1>
 				{this.content()}
 			</div>
