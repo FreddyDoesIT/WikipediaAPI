@@ -40,8 +40,17 @@ class App extends Component {
 	}
 
 	displayLogout() {
+		console.log(this.props.user.username);
 		return (
 			<Menu.Item>
+				<Menu.Menu>
+					<Menu.Item>
+						<Button color="red" className="hvr-ripple-out">
+							Searching Logs of {this.props.user.username}
+						</Button>
+					</Menu.Item>
+				</Menu.Menu>
+
 				<Button
 					color="blue"
 					className="hvr-ripple-out"
@@ -49,19 +58,12 @@ class App extends Component {
 				>
 					Log out
 				</Button>
-
-				<Menu.Menu>
-					<Menu.Item>
-						<Button color="red" className="hvr-ripple-out" icon>
-							My History
-						</Button>
-					</Menu.Item>
-				</Menu.Menu>
 			</Menu.Item>
 		);
 	}
 
 	render() {
+		const flag = !this.props.user;
 		return (
 			<Container>
 				<Menu secondary className="title">
@@ -71,14 +73,13 @@ class App extends Component {
 							size="tiny"
 							alt="wiki logo"
 						/>
-						&nbsp;&nbsp;&nbsp; 
-
+						&nbsp;&nbsp;&nbsp;
 						<Header as="h1">Welcome to Wiki Search!</Header>
 					</Menu.Item>
 
 					<Menu.Menu position="right">
 						{Meteor.user() ? "" : this.displayLogin()}
-						{this.props.user ? this.displayLogout() : ""}
+						{(!flag) ? this.displayLogout() : ""}
 					</Menu.Menu>
 				</Menu>
 
@@ -89,11 +90,11 @@ class App extends Component {
 }
 
 App.propTypes = {
-	user: PropTypes.bool.isRequired
+	user: PropTypes.object
 };
 
 export default withTracker(() => {
 	return {
-		user: !!Meteor.user()
+		user: Meteor.user()
 	};
 })(App);

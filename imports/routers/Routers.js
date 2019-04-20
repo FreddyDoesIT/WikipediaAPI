@@ -29,9 +29,7 @@ export const renderRoutes = () => (
 	<Router history={browserHistory}>
 		<Switch>
 			<Route exact path="/" component={App} />
-
 			<Route exact path="/history" component={SearchingHistory} />
-
 			<Route component={NotFound} />
 		</Switch>
 	</Router>

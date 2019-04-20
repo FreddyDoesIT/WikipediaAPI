@@ -30,8 +30,7 @@ CS5610 Course Link: http://johnguerra.co/classes/webDevelopment_spring_2019/
 
 First please make sure you have installed meteor, mongoDB, and React.
 
-If you want to run it locally, then follow this.
-Then run the following commands in your terminal.
+If you want to run it locally, follow this and run the following commands in your terminal.
 
 ```
 git clone https://github.com/FreddyDoesIT/WikipediaAPI.git
