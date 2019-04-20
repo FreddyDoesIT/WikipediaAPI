@@ -157,7 +157,7 @@ class Search extends Component {
 
 	content() {
 		return (
-			<span dangerouslySetInnerHTML={{ __html: this.state.display }} />
+			<span className="contentFromWiki" dangerouslySetInnerHTML={{ __html: this.state.display }} />
 		);
 	}
 

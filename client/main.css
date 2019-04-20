@@ -1,7 +1,6 @@
 body {
-  padding: 10px;
+  padding: 15px;
 /*  font-family: sans-serif !important;*/
-  margin: auto;
 }
 
 .hvr-grow-shadow {
@@ -28,4 +27,10 @@ body {
 
 h1 {
   text-align: left !important;
+}
+
+.contentFromWiki {
+  padding: 10px !important;
+  font-size: 1rem;
+  font-family: Lato,'Helvetica Neue',Arial,Helvetica,sans-serif !important;
 }
