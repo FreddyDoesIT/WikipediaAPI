@@ -1,6 +1,7 @@
 body {
   padding: 10px;
-  font-family: sans-serif;
+/*  font-family: sans-serif !important;*/
+  margin: auto;
 }
 
 .hvr-grow-shadow {
@@ -18,4 +19,13 @@ body {
   box-shadow: 0 10px 10px -10px rgba(0, 0, 0, 0.5);
   -webkit-transform: scale(1.1);
   transform: scale(1.1);
+}
+
+.title {
+  margin-top: 10px !important;
+  text-align: left !important;
+}
+
+h1 {
+  text-align: left !important;
 }

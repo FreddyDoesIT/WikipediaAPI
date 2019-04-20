@@ -13,11 +13,12 @@ if (Meteor.isServer) {
 		"searchedHistory.insert"(searchingContent) {
 			check(searchingContent, String);
 
-			// if (!Meteor.userId()) {
-			// 	throw new Meteor.Error("not-authorized");
-			// }
+			if (!Meteor.userId()) {
+				throw new Meteor.Error("not-authorized");
+			}
 
 			searchedHistory.insert({
+				userId: Meteor.userId(),
 				searchedHistory: searchingContent
 			});
 		}

@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import { Input, Form } from "semantic-ui-react";
+import { Input, Form, Button } from "semantic-ui-react";
 import { Meteor } from "meteor/meteor";
 import { withTracker } from "meteor/react-meteor-data";
 import { searchedHistory } from "../api/searchedHistory";
@@ -119,7 +119,9 @@ class Search extends Component {
 
 	history() {
 		return this.state.history.map((data, index) => (
-			<button
+			<Button
+				size="mini"
+				basic
 				className="hvr-grow-shadow"
 				key={index}
 				onClick={e => this.handleClick(e.target.value)}
@@ -129,14 +131,16 @@ class Search extends Component {
 				value={data.searchedHistory}
 			>
 				{data}
-			</button>
+			</Button>
 		));
 	}
 
 	links() {
 		return this.state.links
 			? this.state.links.map((data, index) => (
-					<button
+					<Button
+						size="mini"
+						basic
 						className="hvr-grow-shadow"
 						key={index}
 						onClick={e => this.handleClick(e.target.value)}
@@ -146,7 +150,7 @@ class Search extends Component {
 						value={data["*"]}
 					>
 						{data["*"]}
-					</button>
+					</Button>
 			  ))
 			: "";
 	}
@@ -161,10 +165,16 @@ class Search extends Component {
 		return (
 			<div>
 				{this.searchBar()}
+				<br />
+				<br />
 				<h1>History</h1>
 				{this.history()}
+				<br />
+				<br />
 				<h1>Links</h1>
 				{this.links()}
+				<br />
+				<br />
 				<h1>Content</h1>
 				{this.content()}
 			</div>
