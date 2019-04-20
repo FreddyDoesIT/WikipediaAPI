@@ -79,6 +79,7 @@ class Search extends Component {
 				title: data.title,
 				links: data.links.slice(0, 100),
 				display: data.text["*"],
+				searchingContent: value,
 				history: historyUpdate
 			});
 		});

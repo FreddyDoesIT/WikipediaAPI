@@ -14,7 +14,7 @@ export default class NotFound extends React.Component {
 				/>
 				<br />
 				<div>
-					<h1>404 - PAGE NOT Found</h1> <br />
+					<p>404 - PAGE NOT Found</p> <br />
 					<h3>
 						The page you are looking for might have been removed,
 						have its name changed or is temporarily unavailable.

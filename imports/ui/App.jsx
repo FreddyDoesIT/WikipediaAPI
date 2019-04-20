@@ -6,6 +6,7 @@ import Login from "./Login.jsx";
 import { Meteor } from "meteor/meteor";
 import { withTracker } from "meteor/react-meteor-data";
 import PropTypes from "prop-types";
+import { Link } from "react-router-dom";
 
 class App extends Component {
 	constructor(props) {
@@ -45,9 +46,11 @@ class App extends Component {
 			<Menu.Item>
 				<Menu.Menu>
 					<Menu.Item>
-						<Button color="red" className="hvr-ripple-out">
-							Searching Logs of {this.props.user.username}
-						</Button>
+						<Link to="/history">
+							<Button color="red" className="hvr-ripple-out">
+								Searching Logs of {this.props.user.username}
+							</Button>
+						</Link>
 					</Menu.Item>
 				</Menu.Menu>
 
@@ -79,7 +82,7 @@ class App extends Component {
 
 					<Menu.Menu position="right">
 						{Meteor.user() ? "" : this.displayLogin()}
-						{(!flag) ? this.displayLogout() : ""}
+						{!flag ? this.displayLogout() : ""}
 					</Menu.Menu>
 				</Menu>
 

@@ -4,6 +4,7 @@ import { withTracker } from "meteor/react-meteor-data";
 import { Meteor } from "meteor/meteor";
 import { Button, Container, Grid } from "semantic-ui-react";
 import PropTypes from "prop-types";
+import { Link } from "react-router-dom";
 
 class SearchingHistory extends Component {
 	renderHistory() {
@@ -18,9 +19,15 @@ class SearchingHistory extends Component {
 		return (
 			<Container>
 				<h2> My History</h2>
+				<br/>
 				<Grid.Row columns={5}>
 					<Grid.Column>{this.renderHistory()}</Grid.Column>
 				</Grid.Row>
+				<br/>
+				<Link to="/">
+					<Button>Back to main</Button>
+				</Link>
+				
 			</Container>
 		);
 	}
