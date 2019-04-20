@@ -22,7 +22,7 @@ class Search extends Component {
 	onFormSubmit(event) {
 		event.preventDefault();
 
-		let historyUpdate = this.state.history.slice();
+		let historyUpdate = this.state.history;
 		historyUpdate.push(this.state.searchingContent);
 
 		Meteor.call(
@@ -63,11 +63,25 @@ class Search extends Component {
 	}
 
 	handleClick(value) {
-		event.preventDefault();
+		// event.preventDefault();
+
+		let historyUpdate = this.state.history.slice();
+		historyUpdate.length = 0;
+		historyUpdate.push(value);
+
+		this.methods(value, historyUpdate);
+	}
+
+	handleClickLink(value) {
+		// event.preventDefault();
 
 		let historyUpdate = this.state.history.slice();
 		historyUpdate.push(value);
 
+		this.methods(value, historyUpdate);
+	}
+
+	methods(value, historyUpdate) {
 		Meteor.call("getDataFromAPI", value, (err, data) => {
 			if (err) {
 				this.setState({ err });
@@ -144,7 +158,7 @@ class Search extends Component {
 						basic
 						className="hvr-grow-shadow"
 						key={index}
-						onClick={e => this.handleClick(e.target.value)}
+						onClick={e => this.handleClickLink(e.target.value)}
 						onChange={e =>
 							this.setState({ searchingContent: e.target.value })
 						}
