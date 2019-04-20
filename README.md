@@ -28,9 +28,9 @@ CS5610 Course Link: http://johnguerra.co/classes/webDevelopment_spring_2019/
 
 ## Usage
 
-First please make sure you have installed meteor, mongoDB, and React.
+Just check out https://wikipedia-final.herokuapp.com/
 
-If you want to run it locally, follow this and run the following commands in your terminal.
+Or if you run it locally, you need to make sure you have installed meteor, mongoDB, and React, and run the following commands in your terminal.
 
 ```
 git clone https://github.com/FreddyDoesIT/WikipediaAPI.git
