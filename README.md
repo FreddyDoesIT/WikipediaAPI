@@ -1,4 +1,4 @@
-# [WikipediaAPI](https://wordict.herokuapp.com/)
+# [WikipediaAPI](https://wikipedia-final.herokuapp.com/)
 
 This application supports user register. 
 You can search in this website no matter you log in or not. 
